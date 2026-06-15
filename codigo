@@ -1,0 +1,268 @@
+BLOCO 1 - MATEMÁTICA E LÓGICA
+
+def divisivel_por(numero, divisor):
+    if divisor == 0:
+        return False
+    return numero % divisor == 0
+
+
+def potencia(base, expoente):
+    resultado = 1
+    for _ in range(expoente):
+        resultado *= base
+    return resultado
+
+
+def listar_divisores(n):
+    divisores = []
+    for i in range(1, n + 1):
+        if n % i == 0:
+            divisores.append(i)
+    return divisores
+
+
+def eh_primo(n):
+    if n < 2:
+        return False
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+
+def fatorial(n):
+    if n <= 1:
+        return 1
+    return n * fatorial(n - 1)
+
+BLOCO 2 - STRINGS AVANÇADO
+
+def contar_vogais(texto):
+    vogais = "aeiouAEIOU"
+    return sum(1 for letra in texto if letra in vogais)
+
+
+def formatar_nome_completo(nome):
+    return nome.title()
+
+
+def remover_espacos_duplos(texto):
+    return " ".join(texto.split())
+
+
+def censurar_palavra(texto, palavra_proibida):
+    return texto.replace(palavra_proibida, "*" * len(palavra_proibida))
+
+
+def sao_anagramas(texto1, texto2):
+    t1 = texto1.lower().replace(" ", "")
+    t2 = texto2.lower().replace(" ", "")
+    return sorted(t1) == sorted(t2)
+
+BLOCO 3 - LISTAS E ORDENAÇÃO
+
+def remover_duplicatas(lista):
+    vistos = []
+    resultado = []
+    for item in lista:
+        if item not in vistos:
+            vistos.append(item)
+            resultado.append(item)
+    return resultado
+
+
+def intercalar_listas(lista1, lista2):
+    resultado = []
+    tamanho = min(len(lista1), len(lista2))
+
+    for i in range(tamanho):
+        resultado.append(lista1[i])
+        resultado.append(lista2[i])
+
+    resultado.extend(lista1[tamanho:])
+    resultado.extend(lista2[tamanho:])
+    return resultado
+
+
+def busca_binaria(lista_ordenada, alvo):
+    inicio = 0
+    fim = len(lista_ordenada) - 1
+
+    while inicio <= fim:
+        meio = (inicio + fim) // 2
+
+        if lista_ordenada[meio] == alvo:
+            return meio
+        elif lista_ordenada[meio] < alvo:
+            inicio = meio + 1
+        else:
+            fim = meio - 1
+
+    return -1
+
+
+def n_maiores(lista, n):
+    return sorted(lista, reverse=True)[:n]
+
+
+def achatar_lista(lista_de_listas):
+    resultado = []
+    for sublista in lista_de_listas:
+        resultado.extend(sublista)
+    return resultado
+
+BLOCO 4 - DICIONÁRIOS E REGISTROS
+
+def inverter_dicionario(dicionario):
+    novo = {}
+    for chave, valor in dicionario.items():
+        novo[valor] = chave
+    return novo
+
+
+def mesclar_dicionarios(dict1, dict2):
+    resultado = dict1.copy()
+    resultado.update(dict2)
+    return resultado
+
+
+def contar_frequencia(lista):
+    frequencia = {}
+    for item in lista:
+        if item in frequencia:
+            frequencia[item] += 1
+        else:
+            frequencia[item] = 1
+    return frequencia
+
+
+def filtrar_chaves(dicionario, chaves_permitidas):
+    return {k: v for k, v in dicionario.items() if k in chaves_permitidas}
+
+
+def agrupar_por_turma(alunos):
+    grupos = {}
+    for aluno in alunos:
+        turma = aluno["turma"]
+        if turma not in grupos:
+            grupos[turma] = []
+        grupos[turma].append(aluno["nome"])
+    return grupos
+
+BLOCO 5 - LÓGICA COMPOSTA
+
+def estatisticas_notas(notas):
+    return {
+        "media": sum(notas) / len(notas),
+        "maior": max(notas),
+        "menor": min(notas),
+    }
+
+
+def classificar_aluno(media, frequencia):
+    if media >= 6 and frequencia >= 75:
+        return "Aprovado"
+    elif frequencia < 75:
+        return "Reprovado por falta"
+    else:
+        return "Reprovado por nota"
+
+
+def calcular_desconto(preco, quantidade):
+    if quantidade >= 10:
+        desconto = 0.20
+    elif quantidade >= 5:
+        desconto = 0.10
+    else:
+        desconto = 0.05
+    return preco * (1 - desconto)
+
+
+def fibonacci(n, memo={}):
+    if n in memo:
+        return memo[n]
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+
+    memo[n] = fibonacci(n - 1, memo) + fibonacci(n - 2, memo)
+    return memo[n]
+
+
+def validar_cpf_formato(cpf):
+    cpf = cpf.strip()
+
+    if len(cpf) != 14:
+        return False
+
+    for i, char in enumerate(cpf):
+        if i in [3, 7]:
+            if char != ".":
+                return False
+        elif i == 11:
+            if char != "-":
+                return False
+        else:
+            if not char.isdigit():
+                return False
+
+    return True
+
+BLOCO 6 - DADOS ESCOLARES
+
+def gerar_boletim(nome, notas_bimestres):
+    media = sum(notas_bimestres) / len(notas_bimestres)
+    boletim = {"nome": nome, "media": round(media, 2)}
+
+    if media >= 6:
+        boletim["situacao"] = "Aprovado"
+    else:
+        boletim["situacao"] = "Recuperação"
+        nota_recuperacao = 12 - media
+        boletim["nota_recuperacao"] = round(nota_recuperacao, 2)
+
+    return boletim
+
+
+def calcular_frequencia(aulas_dadas, faltas):
+    presencas = aulas_dadas - faltas
+    return round((presencas / aulas_dadas) * 100, 2)
+
+
+def ranking_turma(alunos):
+    return sorted(alunos, key=lambda a: a["nota"], reverse=True)
+
+
+def media_ponderada(notas, pesos):
+    soma_ponderada = sum(n * p for n, p in zip(notas, pesos))
+    soma_pesos = sum(pesos)
+    return round(soma_ponderada / soma_pesos, 2)
+
+
+def relatorio_final(turma):
+    total = len(turma)
+    aprovados = [a for a in turma if a["nota"] >= 6]
+    reprovados = [a for a in turma if a["nota"] < 6]
+    media_turma = sum(a["nota"] for a in turma) / total
+
+    percentual = len(aprovados) / total * 100
+
+    print("========== RELATÓRIO FINAL ==========")
+    for pos, aluno in enumerate(sorted(turma, key=lambda a: a["nota"], reverse=True), 1):
+        status = "✅" if aluno["nota"] >= 6 else "❌"
+        print(f"  {pos}º {aluno['nome']:20s} | {aluno['nota']:.1f} {status}")
+
+    print("-------------------------------------")
+    print(f"  Média da turma   : {media_turma:.2f}")
+    print(f"  Aprovados        : {len(aprovados)}/{total}")
+    print(f"  Taxa de aprovação: {percentual:.1f}%")
+    print("=====================================")
+
+    return {
+        "total": total,
+        "aprovados": len(aprovados),
+        "reprovados": len(reprovados),
+        "media_turma": round(media_turma, 2),
+        "percentual_aprovacao": round(percentual, 2)
+    }
