@@ -1,4 +1,4 @@
-BLOCO 1 - MATEMÁTICA E LÓGICA
+#BLOCO 1 - MATEMÁTICA E LÓGICA
 
 def divisivel_por(numero, divisor):
     if divisor == 0:
@@ -35,7 +35,7 @@ def fatorial(n):
         return 1
     return n * fatorial(n - 1)
 
-BLOCO 2 - STRINGS AVANÇADO
+#BLOCO 2 - STRINGS AVANÇADO
 
 def contar_vogais(texto):
     vogais = "aeiouAEIOU"
@@ -59,7 +59,7 @@ def sao_anagramas(texto1, texto2):
     t2 = texto2.lower().replace(" ", "")
     return sorted(t1) == sorted(t2)
 
-BLOCO 3 - LISTAS E ORDENAÇÃO
+#BLOCO 3 - LISTAS E ORDENAÇÃO
 
 def remover_duplicatas(lista):
     vistos = []
@@ -111,7 +111,7 @@ def achatar_lista(lista_de_listas):
         resultado.extend(sublista)
     return resultado
 
-BLOCO 4 - DICIONÁRIOS E REGISTROS
+#BLOCO 4 - DICIONÁRIOS E REGISTROS
 
 def inverter_dicionario(dicionario):
     novo = {}
@@ -149,7 +149,7 @@ def agrupar_por_turma(alunos):
         grupos[turma].append(aluno["nome"])
     return grupos
 
-BLOCO 5 - LÓGICA COMPOSTA
+#BLOCO 5 - LÓGICA COMPOSTA
 
 def estatisticas_notas(notas):
     return {
@@ -209,7 +209,7 @@ def validar_cpf_formato(cpf):
 
     return True
 
-BLOCO 6 - DADOS ESCOLARES
+#BLOCO 6 - DADOS ESCOLARES
 
 def gerar_boletim(nome, notas_bimestres):
     media = sum(notas_bimestres) / len(notas_bimestres)
